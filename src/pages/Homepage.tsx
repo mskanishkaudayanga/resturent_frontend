@@ -1,6 +1,7 @@
 import React, { useEffect } from "react"
 import ResturentCard from "../Components/resturentCard"
 import RestuarentService from "../services/Resturent.service"
+import AddResturent from "../Components/addResturent"
 
 
 const Homepage = () => {
@@ -22,6 +23,7 @@ const Homepage = () => {
             }
         }/> 
         
+        <AddResturent/>
         </div>
     )
 }

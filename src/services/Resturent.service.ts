@@ -9,6 +9,15 @@ const RestuarentService = {
             console.error('An error occurred:', error.message);
             
         }
+    },
+    addResturent: async ()=>{
+        try {
+             const response =await axiosInstance.post("resturents/add")
+            return response.data;
+        } catch (error) {
+            console.error('An error occurred:', error.message);
+            
+        }
     }
 };
 
