@@ -1,3 +1,4 @@
+import { Resturant } from "../Type";
 import axiosInstance from "./apiClient";
 
 const RestuarentService = {
@@ -10,8 +11,9 @@ const RestuarentService = {
             
         }
     },
-    addResturent: async (data)=>{
+    addResturent: async (data: Resturant)=>{
         try {
+            console.log("flechingData",data);
              const response =await axiosInstance.post("resturents/add",data)
             return response.data;
         } catch (error) {

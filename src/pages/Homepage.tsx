@@ -42,9 +42,15 @@ const Homepage = () => {
             </div>
 
             {/* Restaurant Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
                 {/* Example cards - replace with dynamic data */}
                 <ResturentCard data={{ resturantName: "KFC", location: "DHA" }} />
+                <ResturentCard data={{ resturantName: "McDonald's", location: "Gulberg" }} />
+                <ResturentCard data={{ resturantName: "Subway", location: "Model Town" }} />
+                <ResturentCard data={{ resturantName: "KFC", location: "DHA" }} />
+                <ResturentCard data={{ resturantName: "McDonald's", location: "Gulberg" }} />
+                <ResturentCard data={{ resturantName: "Subway", location: "Model Town" }} />
+                 <ResturentCard data={{ resturantName: "KFC", location: "DHA" }} />
                 <ResturentCard data={{ resturantName: "McDonald's", location: "Gulberg" }} />
                 <ResturentCard data={{ resturantName: "Subway", location: "Model Town" }} />
                 {/* Repeat card component */}
