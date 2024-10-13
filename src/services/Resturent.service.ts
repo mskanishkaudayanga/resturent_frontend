@@ -10,9 +10,9 @@ const RestuarentService = {
             
         }
     },
-    addResturent: async ()=>{
+    addResturent: async (data)=>{
         try {
-             const response =await axiosInstance.post("resturents/add")
+             const response =await axiosInstance.post("resturents/add",data)
             return response.data;
         } catch (error) {
             console.error('An error occurred:', error.message);
