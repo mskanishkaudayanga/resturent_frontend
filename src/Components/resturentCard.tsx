@@ -18,10 +18,6 @@ const ResturentCard = ({ data }: { data: Resturant }) => {
         <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
          {restaurantName}
         </h5>
-   
-      <div className="flex flex-col items-center justify-between">
-        <p>Discription About Resturent  </p>
-      </div>
       <div className="flex flex-col  justify-start ">
              <p className="text-sm font-medium">Location : {city}</p>
         </div>

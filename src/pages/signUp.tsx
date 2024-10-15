@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import RestuarentService from "../services/Resturent.service";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  // State to handle form data
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     restaurantName: "",
@@ -11,34 +12,57 @@ const SignUp = () => {
     city: "",
   });
 
-  // Handle input change
+  const [alertVisible, setAlertVisible] = useState(false); // Alert visibility state
+  const [alertMessage, setAlertMessage] = useState(""); // Alert message
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const fletchData = async (formData) => {
     try {
-         const response =await RestuarentService.addResturent(formData);
+      const response = await RestuarentService.addResturent(formData);
+      if (response) {
+        setAlertMessage("Registration successful!"); // Set success message
+        setAlertVisible(true); // Show alert
+        setFormData({
+          email: "",
+          restaurantName: "",
+          password: "",
+          confirmPassword: "",
+          city: "",
+        });
+      }
     } catch (error) {
+      setAlertMessage("Registration failed! Please try again."); // Set error message
+      setAlertVisible(true); // Show alert
       console.log(error);
     }
-   
-  }
-  const handleSubmit = async (e: React.FormEvent) => {
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     await fletchData(formData);
+    navigate('/login')
   };
 
   return (
-    <div
-      className="min-h-screen flex flex-col lg:flex-row items-center justify-center bg-cover bg-center"
+    <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center bg-cover bg-center"
       style={{
-        backgroundImage: "url('https://example.com/background-image.jpg')", // Replace with your background image URL
+        backgroundImage: "url('https://example.com/background-image.jpg')",
       }}
     >
       {/* Left side: Sign Up Form */}
       <div className="lg:w-1/2 flex items-center justify-center bg-white bg-opacity-80 p-8 rounded-lg shadow-lg">
         <div className="w-full max-w-md p-8">
+
+          {/* Alert Message */}
+          {alertVisible && (
+            <div className={`w-full p-4 mb-4 text-white ${alertMessage.includes("successful") ? "bg-green-500" : "bg-red-500"} rounded-lg`}>
+              {alertMessage}
+            </div>
+          )}
+
           {/* Heading */}
           <h2 className="text-3xl font-bold text-center text-green-500 mb-6">Sign Up</h2>
 
@@ -132,6 +156,17 @@ const SignUp = () => {
               Sign Up
             </button>
           </form>
+
+          {/* Sign In Button */}
+          <div className="flex justify-center items-center mt-4">
+            <p className="mr-2">Already have an account?</p>
+            <button
+              onClick={() => navigate("/login")}
+              className="text-green-500 bg-white hover:bg-white"
+            >
+              Sign In
+            </button>
+          </div>
         </div>
       </div>
 
