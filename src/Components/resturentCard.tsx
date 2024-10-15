@@ -3,9 +3,10 @@
 
 import { Card } from "flowbite-react";
 import React from "react";
+import { Resturant } from "../Type/index.d";
 //import resturentImage from "../../public/r.jpeg"
 const ResturentCard = ({ data }: { data: Resturant }) => {
-    const {resturantName,location} = data
+    const {restaurantName,city} = data
   return (
    
     <Card
@@ -15,14 +16,14 @@ const ResturentCard = ({ data }: { data: Resturant }) => {
     >
     
         <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-         {resturantName}
+         {restaurantName}
         </h5>
    
       <div className="flex flex-col items-center justify-between">
         <p>Discription About Resturent  </p>
       </div>
       <div className="flex flex-col  justify-start ">
-             <p className="text-sm font-medium">Location : {location}</p>
+             <p className="text-sm font-medium">Location : {city}</p>
         </div>
     </Card>
   );

@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ResturentCard from "../Components/resturentCard"; // Your card component
+import RestuarentService from "../services/Resturent.service";
 
 const categories = ["All", "Starters", "Main Courses", "Side Dishes", "Desserts"];
 
 const Homepage = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("All");
+    const [restaurants, setRestaurants] = useState([]);
+    const flechResturent = async () => {
+        const response = await RestuarentService.getResturents();
+        setRestaurants(response.data);
+    }
 
+    useEffect(() => {
+        flechResturent();
+    }, []);
     return (
         <div className="p-8">
             {/* Header */}
@@ -41,19 +50,14 @@ const Homepage = () => {
                 ))}
             </div>
 
+          
+
             {/* Restaurant Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                {/* Example cards - replace with dynamic data */}
-                <ResturentCard data={{ resturantName: "KFC", location: "DHA" }} />
-                <ResturentCard data={{ resturantName: "McDonald's", location: "Gulberg" }} />
-                <ResturentCard data={{ resturantName: "Subway", location: "Model Town" }} />
-                <ResturentCard data={{ resturantName: "KFC", location: "DHA" }} />
-                <ResturentCard data={{ resturantName: "McDonald's", location: "Gulberg" }} />
-                <ResturentCard data={{ resturantName: "Subway", location: "Model Town" }} />
-                 <ResturentCard data={{ resturantName: "KFC", location: "DHA" }} />
-                <ResturentCard data={{ resturantName: "McDonald's", location: "Gulberg" }} />
-                <ResturentCard data={{ resturantName: "Subway", location: "Model Town" }} />
-                {/* Repeat card component */}
+                  {restaurants.map((resturent) => {
+                console.log(resturent)
+                return <ResturentCard data={resturent} />
+            })}
             </div>
         </div>
     );

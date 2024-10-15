@@ -1,5 +1,5 @@
 declare interface Resturant {
-    resturantName: string;
+    restaurantName: string;
     location: string;
     discription?: string;
     email?: string;
