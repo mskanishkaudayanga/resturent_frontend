@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import RestuarentService from "../services/Resturent.service";
 
 const RestaurantPage = () => {
   // Define the menu categories and dishes
@@ -72,11 +73,18 @@ const RestaurantPage = () => {
       },
     ],
   };
+  const [menu,setMenu]=useState({});
 
-
-  // State to track the current selected menu
+  const fletchMenu= async()=>{
+    const response = await RestuarentService.getResturentByid("1");
+    setMenu(response.data.menu);
+  }
+  
+  useEffect(() => {
+    fletchMenu();
+  }, []);
+  console.log("meeee",menu);
   const [selectedMenu, setSelectedMenu] = useState("Breakfast");
-
   return (
     <div>
       {/* Full-width Hero Image */}

@@ -20,6 +20,15 @@ const RestuarentService = {
             console.error('An error occurred:', error.message);
             
         }
+    },
+    getResturentByid :async (id: string)=>{
+        try {
+            const response =await axiosInstance.get(`resturents/${id}/restaurant`)
+            return response.data;
+        } catch (error) {
+            console.error('An error occurred:', error.message);
+            
+        }
     }
 };
 
