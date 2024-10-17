@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import RestuarentService from "../services/Resturent.service";
+import { Resturant } from "../Type/index.d";
 
 const RestaurantPage = () => {
   // Define the menu categories and dishes
@@ -74,16 +75,19 @@ const RestaurantPage = () => {
     ],
   };
   const [menu,setMenu]=useState({});
+  const [resturantDetails, setResturantDetails] = useState<Resturant>({} as Resturant);
 
   const fletchMenu= async()=>{
     const response = await RestuarentService.getResturentByid("1");
+    setResturantDetails(response.data);
     setMenu(response.data.menu);
+    
+
   }
   
   useEffect(() => {
     fletchMenu();
   }, []);
-  console.log("meeee",menu);
   const [selectedMenu, setSelectedMenu] = useState("Breakfast");
   return (
     <div>
@@ -100,16 +104,17 @@ const RestaurantPage = () => {
       <div className="max-w-6xl mx-auto px-4 py-8 lg:flex lg:items-start lg:space-x-8">
         {/* Restaurant Name and Description */}
         <div className="lg:w-2/3">
-          <h1 className="text-3xl lg:text-5xl font-bold mb-4">Restaurant Name</h1>
+          <h1 className="text-3xl lg:text-5xl font-bold mb-4">{resturantDetails?.restaurantName}</h1>
           <p className="text-gray-700 mb-6">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa.
+            {resturantDetails?.discription}
           </p>
 
           {/* Restaurant Details */}
           <div className="space-y-2">
-            <p><strong>Location:</strong> 123 Main Street, City</p>
-            <p><strong>Opening Hours:</strong> 9:00 AM - 11:00 PM</p>
-            <p><strong>Phone:</strong> (123) 456-7890</p>
+            <p><strong>Location:</strong> {resturantDetails.location}</p>
+            <p><strong>Opening Hours:</strong> 
+            {resturantDetails?.openTime} AM - {resturantDetails?.closeTime} PM</p>
+            <p><strong>Phone:</strong> {resturantDetails?.phoneNumber}</p>
           </div>
         </div>
 
