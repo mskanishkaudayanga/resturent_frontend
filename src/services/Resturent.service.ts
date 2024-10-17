@@ -29,6 +29,15 @@ const RestuarentService = {
             console.error('An error occurred:', error.message);
             
         }
+    },
+    updateResturantDetails: async (id: String , data : Resturant)=>{
+        try {
+            const response =await axiosInstance.put(`resturents/${id}/update`,data)
+            return response.data;
+        } catch (error) {
+            console.error('An error occurred:', error.message);
+            
+        }
     }
 };
 

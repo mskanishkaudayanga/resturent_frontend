@@ -7,6 +7,8 @@ declare interface Resturant {
     password?: string;
     confirmPassword?: string;
     city?: string;
+    openTime?: string;
+    closeTime?: string;
 }
 
 export { Resturant };
