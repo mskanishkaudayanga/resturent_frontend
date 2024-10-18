@@ -1,6 +1,6 @@
 declare interface Resturant {
     restaurantName: string;
-    location: string;
+    address: string;
     discription?: string;
     email?: string;
     phoneNumber?: string;
@@ -10,5 +10,8 @@ declare interface Resturant {
     openTime?: string;
     closeTime?: string;
 }
+declare interface Menu{
+    menuName: string;
+}
 
-export { Resturant };
+export { Resturant,Menu };
