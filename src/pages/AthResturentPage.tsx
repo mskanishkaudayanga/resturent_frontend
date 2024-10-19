@@ -19,7 +19,6 @@ const AuthRestaurantPage = () => {
   const fetchMenu = async () => {
     const response = await RestuarentService.getResturentByid("1");
     setResturantDetails(response.data);
-    setMenu(response.data.menu);
   };
 
   useEffect(() => {
