@@ -34,10 +34,19 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+  console.log("Login Page",formData);
+  setFormData({
+    email: "",
+    password: "",
+  })
     //await handleLogin(formData);
   };
 
+  console.log("Login Page",formData);
   return (
+    <>
+   
     <div
       className="min-h-screen flex flex-col lg:flex-row items-center justify-center bg-cover bg-center"
       style={{
@@ -131,6 +140,7 @@ const Login = () => {
         />
       </div>
     </div>
+     </>
   );
 };
 

@@ -111,7 +111,7 @@ const RestaurantPage = () => {
 
           {/* Restaurant Details */}
           <div className="space-y-2">
-            <p><strong>Location:</strong> {resturantDetails.location}</p>
+            <p><strong>Location:</strong> {resturantDetails.address}</p>
             <p><strong>Opening Hours:</strong> 
             {resturantDetails?.openTime} AM - {resturantDetails?.closeTime} PM</p>
             <p><strong>Phone:</strong> {resturantDetails?.phoneNumber}</p>
