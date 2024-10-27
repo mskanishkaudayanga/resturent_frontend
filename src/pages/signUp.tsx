@@ -15,11 +15,11 @@ const SignUp = () => {
   const [alertVisible, setAlertVisible] = useState(false); // Alert visibility state
   const [alertMessage, setAlertMessage] = useState(""); // Alert message
 
-  const handleChange = (e) => {
+  const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const fletchData = async (formData) => {
+  const fletchData = async (formData:any) => {
     try {
       const response = await RestuarentService.addResturent(formData);
       if (response) {
@@ -40,7 +40,7 @@ const SignUp = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await fletchData(formData);
     navigate('/login')

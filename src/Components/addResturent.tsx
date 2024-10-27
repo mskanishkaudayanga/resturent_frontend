@@ -20,7 +20,7 @@ const AddResturent = () => {
     });
   };
 
-  const fletchData = async (formData) => {
+  const fletchData = async (formData:any) => {
     const response =await RestuarentService.addResturent(formData);
   }
   const handleSubmit = async (e: React.FormEvent) => {

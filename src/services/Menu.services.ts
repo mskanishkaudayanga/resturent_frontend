@@ -10,7 +10,11 @@ const MenuServices = {
             console.log("response", response); 
             return response.data;
         } catch (error) {
-            console.error('An error occurred:', error.message);
+            if (error instanceof Error) {
+                console.error('An error occurred:', error.message);
+            } else {
+                console.error('An unknown error occurred:', error);
+            }
 
         }
     }
