@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { useEffect, useState } from "react";
 import { Modal, TimePicker, Input, Button, Form, Menu } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import RestuarentService from "../services/Resturent.service";
@@ -7,7 +9,7 @@ import moment from "moment";
 import MenuServices from "../services/Menu.services";
 
 const AuthRestaurantPage = () => {
-  const [menu, setMenu] = useState<any[]>([]);
+  const [menu, setMenu] = useState<{ [key: string]: { id: number; menuName: string; name: string; description: string; price: string; image: string }[] }>({});
   const [resturantDetails, setResturantDetails] = useState<Resturant>(
     {} as Resturant
   );
@@ -151,7 +153,7 @@ const AuthRestaurantPage = () => {
   <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
     <div className="flex space-x-4">
       {/* Iterate through the array of menu objects and use menuName */}
-      {menu.map((menuItem) => (
+      {Object.values(menu).flat().map((menuItem: { id: React.Key | null | undefined; menuName: number | boolean | React.SetStateAction<string> | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined; }) => (
         <button
           key={menuItem.id} // Use the id as the key for better performance
           className={`py-2 px-4 font-semibold text-lg ${
@@ -159,9 +161,9 @@ const AuthRestaurantPage = () => {
               ? "bg-green-500 text-white rounded-md"
               : "text-gray-600 hover:bg-gray-200"
           }`}
-          onClick={() => setSelectedMenu(menuItem.menuName)} // Select the menu by its name
+          onClick={() => setSelectedMenu(String(menuItem.menuName))} // Select the menu by its name
         >
-          {menuItem.menuName} {/* Render the menu name */}
+          {String(menuItem?.menuName)} {/* Render the menu name */}
         </button>
       ))}
     </div>

@@ -4,7 +4,18 @@ import { Resturant } from "../Type/index.d";
 
 const RestaurantPage = () => {
   // Define the menu categories and dishes
- const menus = {
+ type MenuCategory = {
+  name: string;
+  description: string;
+  price: string;
+  image: string;
+};
+
+type Menus = {
+  [key: string]: MenuCategory[];
+};
+
+const menus: Menus = {
     Breakfast: [
       {
         name: "Pancakes",
@@ -136,19 +147,19 @@ const RestaurantPage = () => {
       <div className="bg-gray-100 py-4">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex space-x-4">
-            {Object.keys(menus).map((menu) => (
-              <button
-                key={menu}
-                className={`py-2 px-4 font-semibold text-lg ${
-                  selectedMenu === menu
-                    ? "bg-green-500 text-white rounded-md"
-                    : "text-gray-600 hover:bg-gray-200"
-                }`}
-                onClick={() => setSelectedMenu(menu)}
-              >
-                {menu}
-              </button>
-            ))}
+          {Object.keys(menus).map((menu) => (
+            <button
+              key={menu}
+              className={`py-2 px-4 font-semibold text-lg ${
+                selectedMenu === menu
+                  ? "bg-green-500 text-white rounded-md"
+                  : "text-gray-600 hover:bg-gray-200"
+              }`}
+              onClick={() => setSelectedMenu(menu)}
+            >
+              {menu}
+            </button>
+          ))}
           </div>
         </div>
       </div>
