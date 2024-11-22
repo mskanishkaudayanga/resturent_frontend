@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RestuarentService from "../services/Resturent.service";
-
+import authServices from "../services/Auth.services";
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -35,15 +35,15 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-  console.log("Login Page",formData);
+   const Log = await  authServices.login(formData);
+    console.log("login",Log);
   setFormData({
     email: "",
     password: "",
   })
-    //await handleLogin(formData);
+  
   };
 
-  console.log("Login Page",formData);
   return (
     <>
    

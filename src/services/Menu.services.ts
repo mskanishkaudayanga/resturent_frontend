@@ -15,7 +15,6 @@ const MenuServices = {
             } else {
                 console.error('An unknown error occurred:', error);
             }
-
         }
     }
 
